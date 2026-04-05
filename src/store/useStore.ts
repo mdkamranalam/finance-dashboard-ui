@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Transaction, UserRole } from "../types";
+import type { Transaction, UserRole } from "../types/index";
 import { initialTransactions } from "../data/mockData";
 
 interface DashboardState {
