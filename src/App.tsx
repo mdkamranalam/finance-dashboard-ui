@@ -9,14 +9,15 @@ import {
   Settings,
   IndianRupee,
 } from "lucide-react";
+import ChartsSection from "./components/dashboard/ChartsSection";
 
 function App() {
   const { role, setRole } = useStore();
 
   return (
-    <div>
+    <div className="flex flex-row h-screen bg-gray-50 font-sans text-gray-900 overflow-hidden w-full">
       {/* SIDEBAR */}
-      <aside>
+      <aside className="w-64 bg-white border-r hidden md:flex flex-col shrink-0 z-10">
         <div className="p-6 border-b">
           <h1 className="text-2xl font-bold text-blue-600 flex items-center gap-2">
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white">
@@ -49,7 +50,7 @@ function App() {
       </aside>
 
       {/* MAIN CONTENT WRAPPER */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden">
+      <div className="flex-1 flex flex-col h-full overflow-hidden w-full">
         {/* HEADER */}
         <header className="h-20 bg-white border-b flex items-center justify-between px-8 shrink-0">
           <h2 className="text-xl font-semibold text-gray-800">Overview</h2>
@@ -72,15 +73,15 @@ function App() {
 
         {/* DASHBOARD CONTENT */}
         <main className="flex-1 overflow-y-auto p-8">
-          <div className="max-w-6xl mx-auto space-y-8 pb-12">
+          <div className="max-w-7xl mx-auto space-y-8 pb-12">
             <SummaryCards />
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm border border-gray-100 min-h-[400px] flex items-center justify-center text-gray-400 border-dashed">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+              <div className="lg:col-span-2">
                 <TransactionList />
               </div>
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 min-h-[400px] flex items-center justify-center text-gray-400 border-dashed">
-                [ Charts Will Go Here ]
+              <div className="lg:col-span-2">
+                <ChartsSection />
               </div>
             </div>
           </div>

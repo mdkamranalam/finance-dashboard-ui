@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useStore } from "../../store/useStore";
 import Card from "../ui/Card";
+import AddTransactionModal from "./AddTransactionalModal";
 import AdminOnly from "../layout/AdminOnly";
 import { Search, Trash2, IndianRupee } from "lucide-react";
 
 const TransactionList = () => {
   const { transactions, deleteTransaction } = useStore();
+
   const [searchTerm, setSearchTerm] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const filteredTransactions = transactions.filter((t) =>
     t.category.toLowerCase().includes(searchTerm.toLowerCase()),
   );
@@ -34,7 +38,10 @@ const TransactionList = () => {
 
           {/* Only Admins will see this "Add New" button! */}
           <AdminOnly>
-            <button className="whitespace-nowrap bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="whitespace-nowrap bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+            >
               + Add New
             </button>
           </AdminOnly>
@@ -96,6 +103,10 @@ const TransactionList = () => {
           </div>
         )}
       </div>
+      <AddTransactionModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </Card>
   );
 };
